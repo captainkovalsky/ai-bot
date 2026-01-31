@@ -1,0 +1,12 @@
+{
+  "_meta": {
+    "name": "Telegram Group Policy",
+    "date": 1769899621,
+    "description": "Configure Telegram groups to require mentions for bot interaction"
+  },
+  "channels": {
+    "telegram": {
+      "groups": { "*": { "requireMention": true } }
+    }
+  }
+}

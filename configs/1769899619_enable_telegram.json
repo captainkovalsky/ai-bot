@@ -1,0 +1,13 @@
+{
+  "_meta": {
+    "name": "Enable Telegram",
+    "date": 1769899619,
+    "description": "Enable Telegram channel and map bot token from environment"
+  },
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "botToken": "${TELEGRAM_BOT_TOKEN}"
+    }
+  }
+}
