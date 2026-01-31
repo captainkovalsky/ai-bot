@@ -1,0 +1,37 @@
+services:
+  openclaw-gateway:
+    image: ghcr.io/openclaw/openclaw:latest
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      - HOME=/home/node
+      - NODE_ENV=production
+      - TERM=xterm-256color
+      - OPENCLAW_GATEWAY_BIND=${OPENCLAW_GATEWAY_BIND:-0.0.0.0}
+      - OPENCLAW_GATEWAY_PORT=${OPENCLAW_GATEWAY_PORT:-18789}
+      - OPENCLAW_GATEWAY_TOKEN=${OPENCLAW_GATEWAY_TOKEN}
+      - GOG_KEYRING_PASSWORD=${GOG_KEYRING_PASSWORD}
+      - XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-/home/node/.openclaw}
+    volumes:
+      # Persistence for configuration
+      - openclaw_config:/home/node/.openclaw
+      # Persistence for workspaces
+      - openclaw_workspace:/home/node/.openclaw/workspace
+    ports:
+      # Expose port for Coolify to pick up
+      - "${OPENCLAW_GATEWAY_PORT:-18789}:18789"
+    command:
+      [
+        "node",
+        "dist/index.js",
+        "gateway",
+        "--bind",
+        "${OPENCLAW_GATEWAY_BIND:-0.0.0.0}",
+        "--port",
+        "${OPENCLAW_GATEWAY_PORT:-18789}",
+      ]
+
+volumes:
+  openclaw_config:
+  openclaw_workspace:
