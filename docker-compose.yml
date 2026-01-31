@@ -18,8 +18,7 @@ services:
     volumes:
       # Persistence for configuration
       - /ai-agent/.openclaw:/home/node/.openclaw
-      # Configs
-      - ./configs:/app/configs
+
     ports:
       # Expose port for Coolify to pick up
       - "${OPENCLAW_GATEWAY_PORT:-18789}:18789"
