@@ -14,11 +14,8 @@ services:
       - GOG_KEYRING_PASSWORD=${GOG_KEYRING_PASSWORD}
       - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
       - XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-/home/node/.openclaw}
-    volumes:
       # Persistence for configuration
-      - openclaw_config:/home/node/.openclaw
-      # Persistence for workspaces
-      - openclaw_workspace:/home/node/.openclaw/workspace
+      - /ai-agent/.openclaw:/home/node/.openclaw
     ports:
       # Expose port for Coolify to pick up
       - "${OPENCLAW_GATEWAY_PORT:-18789}:18789"
@@ -34,6 +31,4 @@ services:
         "--allow-unconfigured",
       ]
 
-volumes:
-  openclaw_config:
-  openclaw_workspace:
+
