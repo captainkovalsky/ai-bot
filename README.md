@@ -39,3 +39,19 @@ node /app/scripts/approve.js
 docker compose exec openclaw-gateway node /app/scripts/approve.js
 ```
 
+### Configuration Patches
+
+To modify the OpenClaw configuration without editing the main file, use the patch system:
+1.  Add JSON patch files to the `configs/` directory.
+2.  Run the merge script to generate the final configuration:
+
+```bash
+# Inside container:
+node /app/scripts/apply_patches.js /home/node/.openclaw/openclaw.json
+
+# Or from host:
+docker compose exec openclaw-gateway node /app/scripts/apply_patches.js /home/node/.openclaw/openclaw.json
+docker compose restart openclaw-gateway
+```
+
+
