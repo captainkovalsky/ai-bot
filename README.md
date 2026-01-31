@@ -29,11 +29,13 @@ This repository contains the Docker Compose configuration for deploying the Open
 
 ### "Permission denied" on openclaw-approve
 
-If you encounter permission errors running `openclaw-approve` aliases inside the container, use the direct Node.js command instead:
+If you encounter permission errors running `openclaw-approve` aliases inside the container, use the simplified helper script:
 
 ```bash
-cd /app
-node dist/index.js pairing approve <channel> <code>
-# Example:
-# node dist/index.js pairing approve telegram 123456
+# Inside the container:
+/app/scripts/approve.sh <channel> <code>
+
+# Or from the host (one-liner):
+docker compose exec openclaw-gateway /app/scripts/approve.sh <channel> <code>
 ```
+
