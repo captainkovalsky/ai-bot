@@ -23,4 +23,17 @@ This repository contains the Docker Compose configuration for deploying the Open
 
 *   **Bind Address**: The gateway is configured to bind to `lan` (private IP) by default, which works best for Docker networking and Coolify deployments.
 *   **Startup Flags**: Includes `--allow-unconfigured` to ensure the container starts smoothly on the first run.
-*   **Persistence**: Configuration and workspaces are persisted in Docker volumes (`openclaw_config` and `openclaw_workspace`).
+*   **Persistence**: Configuration and workspaces are persisted in the host directory `/ai-agent/.openclaw` (mapped to `/home/node/.openclaw`).
+
+## Troubleshooting
+
+### "Permission denied" on openclaw-approve
+
+If you encounter permission errors running `openclaw-approve` aliases inside the container, use the direct Node.js command instead:
+
+```bash
+cd /app
+node dist/index.js pairing approve <channel> <code>
+# Example:
+# node dist/index.js pairing approve telegram 123456
+```
