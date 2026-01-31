@@ -1,16 +1,17 @@
 {
   "_meta": {
-    "name": "OpenCode MiniMax Configuration",
+    "name": "OpenCode Configuration",
     "date": 1769899620,
-    "description": "Set default model to MiniMax M2.1 Free via OpenCode provider"
+    "description": "Set default model to Big Pickle via OpenCode provider"
   },
   "env": {
-    "OPENCODE_API_KEY": "${OPENCODE_API_KEY}"
+    "OPENCODE_API_KEY": "${OPENCODE_API_KEY}",
+    "OPENCODE_ZEN_API_KEY": "${OPENCODE_ZEN_API_KEY}"
   },
   "agents": {
     "defaults": {
       "model": {
-        "primary": "opencode/MiniMax-M2.1-Free"
+        "primary": "opencode/big-pickle"
       }
     }
   }
