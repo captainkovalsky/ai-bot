@@ -1,11 +1,11 @@
-const { execSync } = require('child_process');
+import { execSync } from 'child_process';
+
 const OPENCLAW_CMD = 'node /app/dist/index.js';
 
 console.log("🔎 Checking for pending device requests...");
 
 try {
   // list devices in JSON format
-  // We use try-catch for the execution in case the command fails or returns non-JSON
   let output;
   try {
       output = execSync(`${OPENCLAW_CMD} devices list --json`, { encoding: 'utf8' });
@@ -35,7 +35,6 @@ try {
   }
 
   for (const req of pending) {
-    // Try multiple keys for the ID as per the bash script example
     const id = req.requestId || req.id || req.request;
     if (id) {
         console.log(`🚀 Approving request: ${id}`);

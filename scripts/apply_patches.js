@@ -1,16 +1,13 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+// Replicate __dirname in ESM
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const CONFIG_DIR = path.resolve(__dirname, '../configs');
-const OUTPUT_FILE = path.resolve(__dirname, '../openclaw.json'); // Default output to root of project? Or to mapped volume?
-// Better: Default to printing to stdout or a specific file arg.
-// Let's output to the mapped volume location: /home/node/.openclaw/openclaw.json (inside container)
-// Or relative to the script if running on host.
-// Let's standardise on: Writes to <project_root>/final_config.json, which user must allow or move?
-// NO, easier: User runs this, it reads `configs/*.json`, merges, and writes to `openclaw.json` at the root (or wherever env var says).
 
-// Let's assume the script handles the logic and writes to standard output, which can be piped, OR directly to a file.
-// Helper function to deep merge objects
 function isObject(item) {
   return (item && typeof item === 'object' && !Array.isArray(item));
 }
@@ -40,9 +37,7 @@ if (!fs.existsSync(CONFIG_DIR)) {
     process.exit(1);
 }
 
-// Read files
 const files = fs.readdirSync(CONFIG_DIR).filter(file => file.endsWith('.json')).sort();
-
 let finalConfig = {};
 
 if (files.length === 0) {
@@ -72,12 +67,15 @@ files.forEach(file => {
 
 // Output
 const outputJSON = JSON.stringify(finalConfig, null, 2);
-// Decide where to write.
-// If running in container, we might want to write to /home/node/.openclaw/openclaw.json
-// But that path is dynamic.
-// Let's write to "openclaw.json" in the current working directory of the caller, or allow an argument.
 const targetPath = process.argv[2] || 'openclaw.json';
 
 console.log(`💾 Writing merged config to: ${targetPath}`);
+
+// Ensure target directory exists
+const targetDir = path.dirname(targetPath);
+if (!fs.existsSync(targetDir)) {
+    fs.mkdirSync(targetDir, { recursive: true });
+}
+
 fs.writeFileSync(targetPath, outputJSON);
 console.log("✅ Configuration build complete.");
