@@ -7,7 +7,6 @@ services:
       - .env
     environment:
       - OPENCODE_API_KEY=${OPENCODE_API_KEY}
-    environment:
       - HOME=/home/node
       - NODE_ENV=production
       - TERM=xterm-256color
