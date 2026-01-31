@@ -1,6 +1,7 @@
 services:
   openclaw-gateway:
-    image: ghcr.io/openclaw/openclaw:latest
+    # image: ghcr.io/openclaw/openclaw:latest
+    build: .
     restart: unless-stopped
     env_file:
       - .env
