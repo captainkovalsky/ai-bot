@@ -2,7 +2,7 @@
   "_meta": {
     "name": "OpenCode MiniMax Configuration",
     "date": 1769899620,
-    "description": "Set default model to MiniMax M2.1 via OpenCode/MiniMax provider"
+    "description": "Set default model to MiniMax M2.1 Free via OpenCode provider"
   },
   "env": {
     "OPENCODE_API_KEY": "${OPENCODE_API_KEY}"
@@ -10,20 +10,20 @@
   "agents": {
     "defaults": {
       "model": {
-        "primary": "minimax/MiniMax-M2.1"
+        "primary": "opencode/MiniMax-M2.1-Free"
       }
     }
   },
   "models": {
     "providers": {
-      "minimax": {
+      "opencode": {
         "baseUrl": "https://api.minimax.io/anthropic",
         "apiKey": "${OPENCODE_API_KEY}",
         "api": "anthropic-messages",
         "models": [
           {
-            "id": "MiniMax-M2.1",
-            "name": "MiniMax M2.1",
+            "id": "MiniMax-M2.1-Free",
+            "name": "MiniMax M2.1 (Free)",
             "contextWindow": 200000,
             "maxTokens": 8192
           }
