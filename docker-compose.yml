@@ -18,8 +18,6 @@ services:
     volumes:
       # Persistence for configuration
       - /ai-agent/.openclaw:/home/node/.openclaw
-      # Scripts
-      - ./scripts:/app/scripts
       # Configs
       - ./configs:/app/configs
     ports:
