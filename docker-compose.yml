@@ -16,7 +16,7 @@ services:
       - XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-/home/node/.openclaw}
     volumes:
       # Persistence for configuration
-      - /home/ai-agent/.openclaw:/home/node/.openclaw
+      - /ai-agent/.openclaw:/home/node/.openclaw
     ports:
       # Expose port for Coolify to pick up
       - "${OPENCLAW_GATEWAY_PORT:-18789}:18789"
