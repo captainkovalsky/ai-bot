@@ -13,22 +13,5 @@
         "primary": "opencode/MiniMax-M2.1-Free"
       }
     }
-  },
-  "models": {
-    "providers": {
-      "opencode": {
-        "baseUrl": "https://api.minimax.io/anthropic",
-        "apiKey": "${OPENCODE_API_KEY}",
-        "api": "anthropic-messages",
-        "models": [
-          {
-            "id": "MiniMax-M2.1-Free",
-            "name": "MiniMax M2.1 (Free)",
-            "contextWindow": 200000,
-            "maxTokens": 8192
-          }
-        ]
-      }
-    }
   }
 }
