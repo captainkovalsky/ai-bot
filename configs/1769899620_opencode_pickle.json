@@ -11,7 +11,7 @@
   "agents": {
     "defaults": {
       "model": {
-        "primary": "opencode/big-pickle"
+        "primary": "opencode/minimax-m2.1-free"
       }
     }
   }
