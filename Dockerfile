@@ -8,6 +8,7 @@ COPY configs/ /app/configs/
 
 # Make scripts executable
 RUN chmod +x /app/scripts/bootstrap.sh
+RUN npm i -g opencode-ai
 
 # Switch back to non-root user
 USER node
